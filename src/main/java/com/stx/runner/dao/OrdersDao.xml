@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stx.runner.dao.OrdersDao">
+
+    <resultMap type="com.stx.runner.entity.Orders" id="OrdersMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="buyerName" column="buyer_name" jdbcType="VARCHAR"/>
+        <result property="buyerPhone" column="buyer_phone" jdbcType="VARCHAR"/>
+        <result property="buyerAddress" column="buyer_address" jdbcType="VARCHAR"/>
+        <result property="orderAmount" column="order_amount" jdbcType="NUMERIC"/>
+        <result property="orderStatus" column="order_status" jdbcType="BOOLEAN"/>
+        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="sellerName" column="seller_name" jdbcType="VARCHAR"/>
+        <result property="sellerPhone" column="seller_phone" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="sid" column="sid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findAllByUid" resultMap="OrdersMap">
+        select * from orders
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrdersMap">
+        select
+          id, buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid
+        from school_shopping.orders
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrdersMap">
+        select
+          id, buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid
+        from school_shopping.orders
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrdersMap">
+        select
+          id, buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid
+        from school_shopping.orders
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="buyerName != null and buyerName != ''">
+                and buyer_name = #{buyerName}
+            </if>
+            <if test="buyerPhone != null and buyerPhone != ''">
+                and buyer_phone = #{buyerPhone}
+            </if>
+            <if test="buyerAddress != null and buyerAddress != ''">
+                and buyer_address = #{buyerAddress}
+            </if>
+            <if test="orderAmount != null">
+                and order_amount = #{orderAmount}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="createtime != null">
+                and createTime = #{createtime}
+            </if>
+            <if test="sellerName != null and sellerName != ''">
+                and seller_name = #{sellerName}
+            </if>
+            <if test="sellerPhone != null and sellerPhone != ''">
+                and seller_phone = #{sellerPhone}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into school_shopping.orders(buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid)
+        values (#{buyerName}, #{buyerPhone}, #{buyerAddress}, #{orderAmount}, #{orderStatus}, #{createtime}, #{sellerName}, #{sellerPhone}, #{uid}, #{sid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update school_shopping.orders
+        <set>
+            <if test="buyerName != null and buyerName != ''">
+                buyer_name = #{buyerName},
+            </if>
+            <if test="buyerPhone != null and buyerPhone != ''">
+                buyer_phone = #{buyerPhone},
+            </if>
+            <if test="buyerAddress != null and buyerAddress != ''">
+                buyer_address = #{buyerAddress},
+            </if>
+            <if test="orderAmount != null">
+                order_amount = #{orderAmount},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime},
+            </if>
+            <if test="sellerName != null and sellerName != ''">
+                seller_name = #{sellerName},
+            </if>
+            <if test="sellerPhone != null and sellerPhone != ''">
+                seller_phone = #{sellerPhone},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from school_shopping.orders where id = #{id}
+    </delete>
+
+</mapper>

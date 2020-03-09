@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stx.runner.dao.ShopDao">
+
+    <resultMap type="com.stx.runner.entity.Shop" id="ShopMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="score" column="score" jdbcType="BOOLEAN"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="isapprove" column="isApprove" jdbcType="BOOLEAN"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="sellnum" column="sellNum" jdbcType="INTEGER"/>
+        <result property="info" column="info" jdbcType="VARCHAR"/>
+        <result property="open" column="open" jdbcType="BOOLEAN"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--根据商家类型查找-->
+    <select id="findShopsByType" resultMap="ShopMap">
+        select * from shop where type = #{type}
+    </select>
+
+    <!--查询所有商家-->
+    <select id="findAll" resultMap="ShopMap">
+        select * from shop
+    </select>
+
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ShopMap">
+        select
+          id, name, createTime, score, type, isApprove, phone, sellNum, info, open, image
+        from school_shopping.shop
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ShopMap">
+        select
+          id, name, createTime, score, type, isApprove, phone, sellNum, info, open, image
+        from school_shopping.shop
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ShopMap">
+        select
+          id, name, createTime, score, type, isApprove, phone, sellNum, info, open, image
+        from school_shopping.shop
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="createtime != null">
+                and createTime = #{createtime}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="isapprove != null">
+                and isApprove = #{isapprove}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="sellnum != null">
+                and sellNum = #{sellnum}
+            </if>
+            <if test="info != null and info != ''">
+                and info = #{info}
+            </if>
+            <if test="open != null">
+                and open = #{open}
+            </if>
+            <if test="image != null and image != ''">
+                and image = #{image}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into school_shopping.shop(name, createTime, score, type, isApprove, phone, sellNum, info, open, image)
+        values (#{name}, #{createtime}, #{score}, #{type}, #{isapprove}, #{phone}, #{sellnum}, #{info}, #{open}, #{image})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update school_shopping.shop
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="isapprove != null">
+                isApprove = #{isapprove},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="sellnum != null">
+                sellNum = #{sellnum},
+            </if>
+            <if test="info != null and info != ''">
+                info = #{info},
+            </if>
+            <if test="open != null">
+                open = #{open},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from school_shopping.shop where id = #{id}
+    </delete>
+
+</mapper>

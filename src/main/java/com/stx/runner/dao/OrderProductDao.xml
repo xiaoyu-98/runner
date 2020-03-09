@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stx.runner.dao.OrderProductDao">
+
+    <resultMap type="com.stx.runner.entity.OrderProduct" id="OrderProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="oid" column="oid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderProductMap">
+        select
+          id, pid, oid
+        from school_shopping.order_product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderProductMap">
+        select
+          id, pid, oid
+        from school_shopping.order_product
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderProductMap">
+        select
+          id, pid, oid
+        from school_shopping.order_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+            <if test="oid != null">
+                and oid = #{oid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into school_shopping.order_product(pid, oid)
+        values (#{pid}, #{oid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update school_shopping.order_product
+        <set>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="oid != null">
+                oid = #{oid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from school_shopping.order_product where id = #{id}
+    </delete>
+
+</mapper>
