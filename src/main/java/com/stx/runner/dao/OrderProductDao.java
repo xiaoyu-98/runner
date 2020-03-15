@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:10
  */
-@Mapper
+
 public interface OrderProductDao {
 
     /**

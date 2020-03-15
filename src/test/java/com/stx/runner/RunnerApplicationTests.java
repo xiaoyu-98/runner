@@ -17,14 +17,8 @@ class RunnerApplicationTests {
     UserDao userDao;
     @Test
     void contextLoads() {
-        User user1 = new User();
-        user1.setAddress("C2-534");
-        user1.setEmail("12@qq.com");
-        user1.setUsername("user");
-        user1.setPassword("123");
-        user1.setEnabled(true);
-        int insert = userDao.insert(user1);
-        System.out.println(insert);
+        User user = userDao.queryById(1);
+        System.out.println(user);
     }
 
     @Test
@@ -33,5 +27,6 @@ class RunnerApplicationTests {
         String encode = encoder.encode("123");
         System.out.println(encode);
     }
+
 
 }

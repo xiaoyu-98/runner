@@ -11,7 +11,6 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-@Mapper
 public interface UserDao {
 
     /**

@@ -2,8 +2,6 @@ package com.stx.runner.entity;
 
 import lombok.Data;
 
-import javax.xml.ws.Response;
-
 /**
  * 类描述:
  * 响应给前端的RespBean对象
