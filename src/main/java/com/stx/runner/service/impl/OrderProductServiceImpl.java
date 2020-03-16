@@ -3,6 +3,7 @@ package com.stx.runner.service.impl;
 import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.dao.OrderProductDao;
 import com.stx.runner.service.OrderProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
