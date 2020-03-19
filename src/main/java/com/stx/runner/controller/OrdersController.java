@@ -44,9 +44,6 @@ public class OrdersController {
     }
 
 
-//    public
-
-
     @ApiOperation("生成订单的接口，前端传入OrdersReq实例对象")
     @PostMapping("/")
     public RespBean createOrders(@RequestBody OrdersReq ordersReq) {
