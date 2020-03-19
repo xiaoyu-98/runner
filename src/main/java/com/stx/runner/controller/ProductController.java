@@ -4,6 +4,7 @@ import com.stx.runner.entity.Product;
 import com.stx.runner.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,7 +21,7 @@ public class ProductController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private ProductService productService;
 
     /**

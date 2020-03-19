@@ -50,7 +50,7 @@ public class MyWebSecutiryConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()//开启HttpSecurity的配置
-                .antMatchers("/user/register")
+                .antMatchers("/user/register") //用户注册接口
                 //表示该接口不需要通过认证就可以访问
                 .permitAll()
                 .anyRequest()

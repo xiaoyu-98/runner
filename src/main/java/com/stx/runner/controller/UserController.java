@@ -6,6 +6,8 @@ import com.stx.runner.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,19 +25,17 @@ public class UserController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private UserService userService;
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     * 获取当前用户信息
+     * @return
      */
-    @ApiOperation("根据用户id查询用户信息")
-    @GetMapping("findUserById/{id}")
-    public User findUserById(@PathVariable Integer id) {
-        return userService.queryById(id);
+    @ApiOperation("获取当前用户信息")
+    @GetMapping("findCurrentUser")
+    public User findCurrentUser(Authentication authentication) {
+        return userService.findCurrentUser(authentication);
     }
 
     //用户注册接口

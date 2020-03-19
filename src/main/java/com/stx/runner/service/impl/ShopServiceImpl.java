@@ -3,6 +3,7 @@ package com.stx.runner.service.impl;
 import com.stx.runner.entity.Shop;
 import com.stx.runner.dao.ShopDao;
 import com.stx.runner.service.ShopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,10 +15,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-@Service("shopService")
+@Service
 public class ShopServiceImpl implements ShopService {
-    @Resource
-    private ShopDao shopDao;
+    @Autowired
+     ShopDao shopDao;
 
     /**
      * 通过ID查询单条数据

@@ -3,14 +3,14 @@
 <mapper namespace="com.stx.runner.dao.ShopDao">
 
     <resultMap type="com.stx.runner.entity.Shop" id="ShopMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="score" column="score" jdbcType="BOOLEAN"/>
         <result property="type" column="type" jdbcType="INTEGER"/>
-        <result property="isapprove" column="isApprove" jdbcType="BOOLEAN"/>
+        <result property="isApprove" column="isApprove" jdbcType="BOOLEAN"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
-        <result property="sellnum" column="sellNum" jdbcType="INTEGER"/>
+        <result property="sellNum" column="sellNum" jdbcType="INTEGER"/>
         <result property="info" column="info" jdbcType="VARCHAR"/>
         <result property="open" column="open" jdbcType="BOOLEAN"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
@@ -55,8 +55,8 @@
             <if test="name != null and name != ''">
                 and name = #{name}
             </if>
-            <if test="createtime != null">
-                and createTime = #{createtime}
+            <if test="createTime != null">
+                and createTime = #{createTime}
             </if>
             <if test="score != null">
                 and score = #{score}
@@ -64,14 +64,14 @@
             <if test="type != null">
                 and type = #{type}
             </if>
-            <if test="isapprove != null">
-                and isApprove = #{isapprove}
+            <if test="isApprove != null">
+                and isApprove = #{isApprove}
             </if>
             <if test="phone != null and phone != ''">
                 and phone = #{phone}
             </if>
-            <if test="sellnum != null">
-                and sellNum = #{sellnum}
+            <if test="sellNum != null">
+                and sellNum = #{sellNum}
             </if>
             <if test="info != null and info != ''">
                 and info = #{info}
@@ -88,7 +88,7 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into school_shopping.shop(name, createTime, score, type, isApprove, phone, sellNum, info, open, image)
-        values (#{name}, #{createtime}, #{score}, #{type}, #{isapprove}, #{phone}, #{sellnum}, #{info}, #{open}, #{image})
+        values (#{name}, #{createTime}, #{score}, #{type}, #{isApprove}, #{phone}, #{sellNum}, #{info}, #{open}, #{image})
     </insert>
 
     <!--通过主键修改数据-->
@@ -98,8 +98,8 @@
             <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="createtime != null">
-                createTime = #{createtime},
+            <if test="createTime != null">
+                createTime = #{createTime},
             </if>
             <if test="score != null">
                 score = #{score},
@@ -107,14 +107,14 @@
             <if test="type != null">
                 type = #{type},
             </if>
-            <if test="isapprove != null">
-                isApprove = #{isapprove},
+            <if test="isApprove != null">
+                isApprove = #{isApprove},
             </if>
             <if test="phone != null and phone != ''">
                 phone = #{phone},
             </if>
-            <if test="sellnum != null">
-                sellNum = #{sellnum},
+            <if test="sellNum != null">
+                sellNum = #{sellNum},
             </if>
             <if test="info != null and info != ''">
                 info = #{info},

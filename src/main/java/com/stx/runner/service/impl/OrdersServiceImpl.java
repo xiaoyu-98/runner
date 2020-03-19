@@ -1,11 +1,16 @@
 package com.stx.runner.service.impl;
 
+import com.stx.runner.dao.OrderProductDao;
+import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.entity.Orders;
 import com.stx.runner.dao.OrdersDao;
 import com.stx.runner.service.OrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,10 +19,12 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-@Service("ordersService")
+@Service
 public class OrdersServiceImpl implements OrdersService {
-    @Resource
-    private OrdersDao ordersDao;
+    @Autowired
+    OrdersDao ordersDao;
+    @Autowired
+    OrderProductDao orderProductDao;
 
     /**
      * 通过ID查询单条数据
@@ -34,7 +41,7 @@ public class OrdersServiceImpl implements OrdersService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -80,5 +87,35 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> findAllByUid(Integer id) {
         return ordersDao.findAllByUid(id);
+    }
+
+    /**
+     * 生成订单业务层
+     * @param orders
+     * @param orderProduct
+     * @return
+     */
+    @Transactional
+    @Override
+    public boolean createOrders(Orders orders, OrderProduct[] orderProduct) {
+        //设置时间
+        orders.setCreateTime(new Date());
+        //新增订单
+        ordersDao.insert(orders);
+        //查到订单为了拿到oid
+        List<Orders> orders1 = ordersDao.queryAll(orders);
+        Integer oid = orders1.get(0).getId();
+
+        int s = 0;//记录影响行数
+        for (OrderProduct product : orderProduct) {
+            product.setOid(oid);
+            if (orderProductDao.insert(product) == 1) {
+                s++;
+            }
+        }
+        if (s == orderProduct.length) {
+            return true;
+        }
+        return false;
     }
 }

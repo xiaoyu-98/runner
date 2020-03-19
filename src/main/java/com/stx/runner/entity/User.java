@@ -17,7 +17,6 @@ import java.io.Serializable;
  */
 @ToString
 public class User implements Serializable, UserDetails {
-    private static final long serialVersionUID = -11524650745083523L;
     /**
     * 主键
     */

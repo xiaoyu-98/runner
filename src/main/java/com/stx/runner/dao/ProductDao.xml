@@ -3,13 +3,13 @@
 <mapper namespace="com.stx.runner.dao.ProductDao">
 
     <resultMap type="com.stx.runner.entity.Product" id="ProductMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="price" column="price" jdbcType="INTEGER"/>
-        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
-        <result property="sellnum" column="sellNum" jdbcType="INTEGER"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="sellNum" column="sellNum" jdbcType="INTEGER"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
-        <result property="sid" column="sid" jdbcType="INTEGER"/>
+<!--        <result property="sid" column="sid" jdbcType="INTEGER"/>-->
     </resultMap>
 
     <!--查询单个-->
@@ -43,11 +43,11 @@
             <if test="price != null">
                 and price = #{price}
             </if>
-            <if test="createtime != null">
-                and createTime = #{createtime}
+            <if test="createTime != null">
+                and createTime = #{createTime}
             </if>
-            <if test="sellnum != null">
-                and sellNum = #{sellnum}
+            <if test="sellNum != null">
+                and sellNum = #{sellNum}
             </if>
             <if test="image != null and image != ''">
                 and image = #{image}
@@ -61,7 +61,7 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into school_shopping.product(name, price, createTime, sellNum, image, sid)
-        values (#{name}, #{price}, #{createtime}, #{sellnum}, #{image}, #{sid})
+        values (#{name}, #{price}, #{createTime}, #{sellNum}, #{image}, #{sid})
     </insert>
 
     <!--通过主键修改数据-->
@@ -74,11 +74,11 @@
             <if test="price != null">
                 price = #{price},
             </if>
-            <if test="createtime != null">
-                createTime = #{createtime},
+            <if test="createTime != null">
+                createTime = #{createTime},
             </if>
-            <if test="sellnum != null">
-                sellNum = #{sellnum},
+            <if test="sellNum != null">
+                sellNum = #{sellNum},
             </if>
             <if test="image != null and image != ''">
                 image = #{image},

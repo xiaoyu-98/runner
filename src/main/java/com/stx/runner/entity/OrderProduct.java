@@ -9,14 +9,14 @@ import java.io.Serializable;
  * @since 2020-03-07 15:16:09
  */
 public class OrderProduct implements Serializable {
-    private static final long serialVersionUID = -38626596147798858L;
-    
-    private Integer id;
-    
-    private Integer pid;
-    
-    private Integer oid;
 
+    private Integer id;
+
+    private Integer pnum;
+
+    private Integer pid;
+
+    private Integer oid;
 
     public Integer getId() {
         return id;
@@ -42,4 +42,12 @@ public class OrderProduct implements Serializable {
         this.oid = oid;
     }
 
+
+    public Integer getPnum() {
+        return pnum;
+    }
+
+    public void setPnum(Integer pnum) {
+        this.pnum = pnum;
+    }
 }

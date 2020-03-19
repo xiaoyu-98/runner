@@ -3,6 +3,7 @@ package com.stx.runner.service.impl;
 import com.stx.runner.entity.Product;
 import com.stx.runner.dao.ProductDao;
 import com.stx.runner.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,10 +15,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-@Service("productService")
+@Service
 public class ProductServiceImpl implements ProductService {
-    @Resource
-    private ProductDao productDao;
+    @Autowired
+     ProductDao productDao;
 
     /**
      * 通过ID查询单条数据

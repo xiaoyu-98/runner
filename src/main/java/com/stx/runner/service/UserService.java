@@ -1,6 +1,8 @@
 package com.stx.runner.service;
 
 import com.stx.runner.entity.User;
+import org.springframework.security.core.Authentication;
+
 import java.util.List;
 
 /**
@@ -53,4 +55,7 @@ public interface UserService {
     boolean deleteById(Integer id);
 
     Integer register(User user);
+
+    User findCurrentUser(Authentication authentication);
+
 }

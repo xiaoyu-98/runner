@@ -1,5 +1,6 @@
 package com.stx.runner.service;
 
+import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.entity.Orders;
 import java.util.List;
 
@@ -53,4 +54,6 @@ public interface OrdersService {
     boolean deleteById(Integer id);
 
     List<Orders> findAllByUid(Integer id);
+
+    boolean createOrders(Orders orders, OrderProduct[] orderProduct);
 }

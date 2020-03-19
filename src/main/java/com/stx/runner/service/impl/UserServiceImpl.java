@@ -3,6 +3,8 @@ package com.stx.runner.service.impl;
 import com.stx.runner.entity.User;
 import com.stx.runner.dao.UserDao;
 import com.stx.runner.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,10 +21,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-    @Resource
-    private UserDao userDao;
+    @Autowired
+     UserDao userDao;
 
     /**
      * 通过ID查询单条数据
@@ -91,6 +93,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setCreateTime(new Date());
 
         return userDao.insert(user);
+    }
+
+    /**
+     * 获取当前登录用户消息
+     * @return
+     */
+    @Override
+    public User findCurrentUser(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        return user;
     }
 
     //登录

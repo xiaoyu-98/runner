@@ -3,6 +3,7 @@ package com.stx.runner.controller;
 import com.stx.runner.entity.Shop;
 import com.stx.runner.service.ShopService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,7 +21,7 @@ public class ShopController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private ShopService shopService;
 
     /**
@@ -29,10 +30,10 @@ public class ShopController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+  /*  @GetMapping("selectOne")
     public Shop selectOne(Integer id) {
-        return this.shopService.queryById(id);
-    }
+        return shopService.queryById(id);
+    }*/
 
     @ApiOperation("查询所有商家信息")
     @GetMapping("/findAll")
@@ -47,4 +48,6 @@ public class ShopController {
         List<Shop> shops = shopService.findShopsByType(type);
         return shops;
     }
+
+
 }

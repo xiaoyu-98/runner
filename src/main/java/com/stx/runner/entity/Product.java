@@ -10,8 +10,7 @@ import java.io.Serializable;
  * @since 2020-03-07 15:16:12
  */
 public class Product implements Serializable {
-    private static final long serialVersionUID = -59592412542454769L;
-    
+
     private Integer id;
     /**
     * 商品名
@@ -24,17 +23,17 @@ public class Product implements Serializable {
     /**
     * 商品添加时间
     */
-    private Date createtime;
+    private Date createTime;
     /**
     * 该商品销量
     */
-    private Integer sellnum;
+    private Integer sellNum;
     /**
     * 该商品图片
     */
     private String image;
-    
-    private Integer sid;
+
+    private Shop shop;
 
 
     public Integer getId() {
@@ -61,20 +60,20 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Integer getSellnum() {
-        return sellnum;
+    public Integer getSellNum() {
+        return sellNum;
     }
 
-    public void setSellnum(Integer sellnum) {
-        this.sellnum = sellnum;
+    public void setSellNum(Integer sellNum) {
+        this.sellNum = sellNum;
     }
 
     public String getImage() {
@@ -85,12 +84,11 @@ public class Product implements Serializable {
         this.image = image;
     }
 
-    public Integer getSid() {
-        return sid;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
-
 }

@@ -10,46 +10,43 @@ import java.io.Serializable;
  * @since 2020-03-07 15:16:12
  */
 public class Shop implements Serializable {
-    private static final long serialVersionUID = 114550842817000639L;
-    
     private Integer id;
-    
+
     private String name;
     /**
-    * 创建时间
-    */
-    private Date createtime;
-    
+     * 创建时间
+     */
+    private Date createTime;
+
     private Boolean score;
     /**
-    * 商家类型1.外卖2.图书3.超市
-    */
+     * 商家类型1.外卖2.图书3.超市
+     */
     private Integer type;
     /**
-    * 是否认证1/0
-    */
-    private Boolean isapprove;
+     * 是否认证1/0
+     */
+    private Boolean isApprove;
     /**
-    * 商家电话
-    */
+     * 商家电话
+     */
     private String phone;
     /**
-    * 以售商品数
-    */
-    private Integer sellnum;
+     * 以售商品数
+     */
+    private Integer sellNum;
     /**
-    * 商家简介
-    */
+     * 商家简介
+     */
     private String info;
     /**
-    * 是否营业
-    */
+     * 是否营业
+     */
     private Boolean open;
     /**
-    * 商家图片
-    */
+     * 商家图片
+     */
     private String image;
-
 
     public Integer getId() {
         return id;
@@ -67,12 +64,12 @@ public class Shop implements Serializable {
         this.name = name;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Boolean getScore() {
@@ -91,12 +88,12 @@ public class Shop implements Serializable {
         this.type = type;
     }
 
-    public Boolean getIsapprove() {
-        return isapprove;
+    public Boolean getApprove() {
+        return isApprove;
     }
 
-    public void setIsapprove(Boolean isapprove) {
-        this.isapprove = isapprove;
+    public void setApprove(Boolean approve) {
+        isApprove = approve;
     }
 
     public String getPhone() {
@@ -107,12 +104,12 @@ public class Shop implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getSellnum() {
-        return sellnum;
+    public Integer getSellNum() {
+        return sellNum;
     }
 
-    public void setSellnum(Integer sellnum) {
-        this.sellnum = sellnum;
+    public void setSellNum(Integer sellNum) {
+        this.sellNum = sellNum;
     }
 
     public String getInfo() {
@@ -138,5 +135,4 @@ public class Shop implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-
 }

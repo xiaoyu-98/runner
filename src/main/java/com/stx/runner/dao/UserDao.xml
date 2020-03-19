@@ -3,7 +3,7 @@
 <mapper namespace="com.stx.runner.dao.UserDao">
 
     <resultMap type="com.stx.runner.entity.User" id="UserMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>

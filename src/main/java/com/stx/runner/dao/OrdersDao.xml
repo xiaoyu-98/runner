@@ -3,17 +3,15 @@
 <mapper namespace="com.stx.runner.dao.OrdersDao">
 
     <resultMap type="com.stx.runner.entity.Orders" id="OrdersMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="buyerName" column="buyer_name" jdbcType="VARCHAR"/>
         <result property="buyerPhone" column="buyer_phone" jdbcType="VARCHAR"/>
         <result property="buyerAddress" column="buyer_address" jdbcType="VARCHAR"/>
         <result property="orderAmount" column="order_amount" jdbcType="NUMERIC"/>
         <result property="orderStatus" column="order_status" jdbcType="BOOLEAN"/>
-        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="sellerName" column="seller_name" jdbcType="VARCHAR"/>
         <result property="sellerPhone" column="seller_phone" jdbcType="VARCHAR"/>
-        <result property="uid" column="uid" jdbcType="INTEGER"/>
-        <result property="sid" column="sid" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="findAllByUid" resultMap="OrdersMap">
@@ -60,8 +58,8 @@
             <if test="orderStatus != null">
                 and order_status = #{orderStatus}
             </if>
-            <if test="createtime != null">
-                and createTime = #{createtime}
+            <if test="createTime != null">
+                and createTime = #{createTime}
             </if>
             <if test="sellerName != null and sellerName != ''">
                 and seller_name = #{sellerName}
@@ -81,7 +79,7 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into school_shopping.orders(buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid)
-        values (#{buyerName}, #{buyerPhone}, #{buyerAddress}, #{orderAmount}, #{orderStatus}, #{createtime}, #{sellerName}, #{sellerPhone}, #{uid}, #{sid})
+        values (#{buyerName}, #{buyerPhone}, #{buyerAddress}, #{orderAmount}, #{orderStatus}, #{createTime}, #{sellerName}, #{sellerPhone}, #{uid}, #{sid})
     </insert>
 
     <!--通过主键修改数据-->
@@ -103,8 +101,8 @@
             <if test="orderStatus != null">
                 order_status = #{orderStatus},
             </if>
-            <if test="createtime != null">
-                createTime = #{createtime},
+            <if test="createTime != null">
+                createTime = #{createTime},
             </if>
             <if test="sellerName != null and sellerName != ''">
                 seller_name = #{sellerName},

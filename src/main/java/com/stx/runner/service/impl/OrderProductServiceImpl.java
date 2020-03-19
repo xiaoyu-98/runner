@@ -15,10 +15,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:11
  */
-@Service("orderProductService")
+@Service
 public class OrderProductServiceImpl implements OrderProductService {
-    @Resource
-    private OrderProductDao orderProductDao;
+    @Autowired
+     OrderProductDao orderProductDao;
 
     /**
      * 通过ID查询单条数据
