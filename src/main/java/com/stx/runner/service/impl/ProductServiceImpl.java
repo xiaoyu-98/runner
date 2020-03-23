@@ -77,4 +77,10 @@ public class ProductServiceImpl implements ProductService {
     public boolean deleteById(Integer id) {
         return this.productDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<Product> findProductsBySid(Integer sid) {
+        return productDao.findProductsBySid(sid);
+
+    }
 }

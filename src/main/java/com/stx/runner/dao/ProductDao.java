@@ -64,4 +64,5 @@ public interface ProductDao {
      */
     int deleteById(Integer id);
 
+    List<Product> findProductsBySid(Integer sid);
 }

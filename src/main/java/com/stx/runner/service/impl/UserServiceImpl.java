@@ -105,6 +105,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
     //登录
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

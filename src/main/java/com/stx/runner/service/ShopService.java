@@ -1,5 +1,6 @@
 package com.stx.runner.service;
 
+import com.stx.runner.entity.Product;
 import com.stx.runner.entity.Shop;
 import java.util.List;
 
@@ -55,4 +56,6 @@ public interface ShopService {
     List<Shop> findAll();
 
     List<Shop> findShopsByType(Integer type);
+
+    Shop findShopById(Integer id);
 }

@@ -58,4 +58,5 @@ public interface UserService {
 
     User findCurrentUser(Authentication authentication);
 
+    List<User> getAllUsers();
 }

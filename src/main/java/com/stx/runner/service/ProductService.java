@@ -52,4 +52,5 @@ public interface ProductService {
      */
     boolean deleteById(Integer id);
 
+    List<Product> findProductsBySid(Integer sid);
 }

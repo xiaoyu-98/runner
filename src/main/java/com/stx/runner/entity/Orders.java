@@ -1,5 +1,7 @@
 package com.stx.runner.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -37,6 +39,7 @@ public class Orders implements Serializable {
     /**
      * 订单创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Shanghai")
     private Date createTime;
     /**
      * 卖家姓名

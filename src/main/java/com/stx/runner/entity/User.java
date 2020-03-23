@@ -1,5 +1,6 @@
 package com.stx.runner.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,6 +49,8 @@ public class User implements Serializable, UserDetails {
     /**
     * 创建时间，自动插入当前时间段
     */
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Shanghai")
     private Date createTime;
     /**
     * 是否激活1/0

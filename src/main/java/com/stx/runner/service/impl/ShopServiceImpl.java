@@ -1,5 +1,6 @@
 package com.stx.runner.service.impl;
 
+import com.stx.runner.entity.Product;
 import com.stx.runner.entity.Shop;
 import com.stx.runner.dao.ShopDao;
 import com.stx.runner.service.ShopService;
@@ -92,4 +93,11 @@ public class ShopServiceImpl implements ShopService {
     public List<Shop> findShopsByType(Integer type) {
         return shopDao.findShopsByType(type);
     }
+
+    @Override
+    public Shop findShopById(Integer id) {
+        return  shopDao.findShopById(id);
+    }
+
+
 }

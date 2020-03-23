@@ -15,6 +15,9 @@
         <result property="image" column="image" jdbcType="VARCHAR"/>
         <result property="nameZh" column="nameZh" jdbcType="VARCHAR"/>
     </resultMap>
+    <select id="getAllUsers" resultMap="UserMap">
+        select * from user;
+    </select>
 
 
     <select id="loadUserByUsername" resultMap="UserMap">
@@ -39,7 +42,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, username, password, phone, sex, email, address, createTime, enabled, image, nameZh
+        id, username, password, phone, sex, email, address, createTime, enabled, image, nameZh
         from school_shopping.user
         <where>
             <if test="id != null">

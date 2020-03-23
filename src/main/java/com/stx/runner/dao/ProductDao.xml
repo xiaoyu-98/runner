@@ -12,6 +12,11 @@
 <!--        <result property="sid" column="sid" jdbcType="INTEGER"/>-->
     </resultMap>
 
+    <!--根据商家id查询该商家的所有产品-->
+    <select id="findProductsBySid" resultMap="ProductMap">
+        select * from product where sid = #{sid}
+    </select>
+
     <!--查询单个-->
     <select id="queryById" resultMap="ProductMap">
         select

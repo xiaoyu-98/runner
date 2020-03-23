@@ -68,4 +68,6 @@ public interface UserDao {
      * @param s 用户名
      */
     User loadUserByUsername(String s);
+
+    List<User> getAllUsers();
 }

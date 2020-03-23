@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (User)表控制层
@@ -33,7 +34,7 @@ public class UserController {
      * @return
      */
     @ApiOperation("获取当前用户信息")
-    @GetMapping("findCurrentUser")
+    @GetMapping("/findCurrentUser")
     public User findCurrentUser(Authentication authentication) {
         return userService.findCurrentUser(authentication);
     }
@@ -47,5 +48,11 @@ public class UserController {
             return RespBean.ok("注册成功！");
         }
         return RespBean.error("注册失败！");
+    }
+
+    @ApiOperation("获取所有用户信息")
+    @GetMapping("/getAllUsers")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 }

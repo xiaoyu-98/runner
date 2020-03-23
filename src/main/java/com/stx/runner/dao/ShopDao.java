@@ -1,5 +1,6 @@
 package com.stx.runner.dao;
 
+import com.stx.runner.entity.Product;
 import com.stx.runner.entity.Shop;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -67,4 +68,6 @@ public interface ShopDao {
     List<Shop> findAll();
 
     List<Shop> findShopsByType(Integer type);
+
+    Shop findShopById(Integer id);
 }

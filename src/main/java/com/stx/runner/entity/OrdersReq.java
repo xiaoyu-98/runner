@@ -2,7 +2,7 @@ package com.stx.runner.entity;
 
 /**
  * 类描述:
- *
+ *  解决前端不能传两个类的问题
  * @author xiaoyu
  * on 2020/3/19
  */
