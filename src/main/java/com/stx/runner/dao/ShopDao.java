@@ -70,4 +70,10 @@ public interface ShopDao {
     List<Shop> findShopsByType(Integer type);
 
     Shop findShopById(Integer id);
+
+    List<Shop> getShopByName(String name);
+
+    int updateShop(Shop shop);
+
+    int deleteByIds(@Param("ids") Integer[] ids);
 }

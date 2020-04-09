@@ -65,4 +65,12 @@ public interface ProductDao {
     int deleteById(Integer id);
 
     List<Product> findProductsBySid(Integer sid);
+
+    List<Product> findAllProducts();
+
+    int deleteByIds(@Param("ids") Integer[] ids);
+
+    int updateProduct(@Param("product") Product product,@Param("sid") Integer sid);
+
+    List<Product> findBySnameAndPname(@Param("sid") Integer sid, @Param("pname") String pname);
 }

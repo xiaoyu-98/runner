@@ -9,8 +9,39 @@
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="sellNum" column="sellNum" jdbcType="INTEGER"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
-<!--        <result property="sid" column="sid" jdbcType="INTEGER"/>-->
+        <association property="shop" column="sid"
+                     select="com.stx.runner.dao.ShopDao.findShopById"
+                     javaType="com.stx.runner.entity.Shop"
+        >
+        </association>
     </resultMap>
+
+    <select id="findBySnameAndPname" resultMap="ProductMap">
+        select p.*,s.name as sname from product p,shop s
+        where p.sid = s.id
+        <if test="sid!=null and sid!=''">
+            and p.sid = #{sid}
+        </if>
+        <if test="pname!=null and pname!=''">
+            and p.name = #{pname}
+        </if>
+    </select>
+
+
+    <update id="updateProduct">
+        update product set name = #{product.name}, price=#{product.price},sid=#{sid} where id = #{product.id}
+    </update>
+
+    <delete id="deleteByIds">
+        delete from product where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findAllProducts" resultMap="ProductMap">
+        select p.*,s.name as sname from product p,shop s where p.sid = s.id order by s.id
+    </select>
 
     <!--根据商家id查询该商家的所有产品-->
     <select id="findProductsBySid" resultMap="ProductMap">
@@ -36,7 +67,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ProductMap">
         select
-          id, name, price, createTime, sellNum, image, sid
+        id, name, price, createTime, sellNum, image, sid
         from school_shopping.product
         <where>
             <if test="id != null">

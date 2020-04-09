@@ -25,7 +25,7 @@ public class Product implements Serializable {
     /**
     * 商品添加时间
     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createTime;
     /**
     * 该商品销量
@@ -37,6 +37,7 @@ public class Product implements Serializable {
     private String image;
 
     private Shop shop;
+
 
 
     public Integer getId() {

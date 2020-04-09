@@ -51,11 +51,17 @@ public interface ShopService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    Integer deleteById(Integer id);
 
     List<Shop> findAll();
 
     List<Shop> findShopsByType(Integer type);
 
     Shop findShopById(Integer id);
+
+    List<Shop> getShopByName(String name);
+
+    int updateShop(Shop shop);
+
+     int deleteByIds(Integer[] ids);
 }

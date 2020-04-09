@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ShopServiceImpl implements ShopService {
     @Autowired
-     ShopDao shopDao;
+    ShopDao shopDao;
 
     /**
      * 通过ID查询单条数据
@@ -36,7 +36,7 @@ public class ShopServiceImpl implements ShopService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -75,12 +75,13 @@ public class ShopServiceImpl implements ShopService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.shopDao.deleteById(id) > 0;
+    public Integer deleteById(Integer id) {
+        return shopDao.deleteById(id);
     }
 
     /**
      * 查询所有商家
+     *
      * @return
      */
     @Override
@@ -96,7 +97,24 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop findShopById(Integer id) {
-        return  shopDao.findShopById(id);
+        return shopDao.findShopById(id);
+
+    }
+
+    @Override
+    public List<Shop> getShopByName(String name) {
+        return shopDao.getShopByName(name);
+    }
+
+    @Override
+    public int updateShop(Shop shop) {
+        return shopDao.updateShop(shop);
+    }
+
+    @Override
+    public int deleteByIds(Integer[] ids) {
+
+        return shopDao.deleteByIds(ids);
     }
 
 

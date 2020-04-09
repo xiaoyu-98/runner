@@ -3,6 +3,7 @@ package com.stx.runner.service.impl;
 import com.stx.runner.entity.User;
 import com.stx.runner.dao.UserDao;
 import com.stx.runner.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -108,6 +109,26 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
+    }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public int deleteUser(Integer id) {
+        return userDao.deleteUser(id);
+    }
+
+    @Override
+    public int deleteMany(Integer[] ids) {
+        return userDao.deleteMany(ids);
     }
 
     //登录

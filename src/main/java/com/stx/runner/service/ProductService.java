@@ -50,7 +50,15 @@ public interface ProductService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    int deleteById(Integer id);
 
     List<Product> findProductsBySid(Integer sid);
+
+    List<Product> findAllProducts();
+
+    int deleteByIds(Integer[] ids);
+
+    int updateProduct(Product product,Integer sid);
+
+    List<Product> findBySnameAndPname(Integer sid, String pname);
 }

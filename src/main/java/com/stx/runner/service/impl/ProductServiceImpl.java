@@ -6,7 +6,6 @@ import com.stx.runner.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -74,13 +73,33 @@ public class ProductServiceImpl implements ProductService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.productDao.deleteById(id) > 0;
+    public int deleteById(Integer id) {
+        return this.productDao.deleteById(id);
     }
 
     @Override
     public List<Product> findProductsBySid(Integer sid) {
         return productDao.findProductsBySid(sid);
 
+    }
+
+    @Override
+    public List<Product> findAllProducts() {
+        return productDao.findAllProducts();
+    }
+
+    @Override
+    public int deleteByIds(Integer[] ids) {
+        return productDao.deleteByIds(ids);
+    }
+
+    @Override
+    public int updateProduct(Product product,Integer sid) {
+        return productDao.updateProduct(product,sid);
+    }
+
+    @Override
+    public List<Product> findBySnameAndPname(Integer sid, String pname) {
+        return productDao.findBySnameAndPname(sid,pname);
     }
 }

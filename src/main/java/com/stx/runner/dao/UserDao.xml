@@ -15,8 +15,33 @@
         <result property="image" column="image" jdbcType="VARCHAR"/>
         <result property="nameZh" column="nameZh" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <delete id="deleteMany">
+        delete from user where id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        update user set nameZh = #{nameZh},sex = #{sex},
+        email= #{email},address=#{address},
+        enabled=#{enabled},phone=#{phone}
+        where id= #{id}
+    </update>
+
+
+    <select id="getUserByName" resultMap="UserMap">
+        select * from user where nameZh like concat('%',#{name},'%')
+    </select>
+
+
     <select id="getAllUsers" resultMap="UserMap">
-        select * from user;
+        select * from user
     </select>
 
 

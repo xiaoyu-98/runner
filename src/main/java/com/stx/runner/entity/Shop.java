@@ -1,6 +1,7 @@
 package com.stx.runner.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.ToString;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
+@ToString
 public class Shop implements Serializable {
     private Integer id;
 
@@ -18,10 +20,10 @@ public class Shop implements Serializable {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createTime;
 
-    private Boolean score;
+    private Integer score;
     /**
      * 商家类型1.外卖2.图书3.超市
      */
@@ -75,11 +77,11 @@ public class Shop implements Serializable {
         this.createTime = createTime;
     }
 
-    public Boolean getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Boolean score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

@@ -70,4 +70,12 @@ public interface UserDao {
     User loadUserByUsername(String s);
 
     List<User> getAllUsers();
+
+    List<User> getUserByName(String name);
+
+    int updateUser(User user);
+
+    int deleteUser(Integer id);
+
+    int deleteMany(@Param("ids") Integer[] ids);
 }

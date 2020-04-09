@@ -50,7 +50,7 @@ public class User implements Serializable, UserDetails {
     * 创建时间，自动插入当前时间段
     */
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createTime;
     /**
     * 是否激活1/0
@@ -95,7 +95,7 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public void setUsername(String username) {

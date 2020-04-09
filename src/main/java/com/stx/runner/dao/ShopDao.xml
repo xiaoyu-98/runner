@@ -6,7 +6,7 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-        <result property="score" column="score" jdbcType="BOOLEAN"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
         <result property="type" column="type" jdbcType="INTEGER"/>
         <result property="isApprove" column="isApprove" jdbcType="BOOLEAN"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
@@ -15,6 +15,22 @@
         <result property="open" column="open" jdbcType="BOOLEAN"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <delete id="deleteByIds">
+        delete from shop where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateShop">
+        update shop set name = #{name},phone=#{phone},info=#{info},score=#{score},isApprove=#{isApprove}
+        where id = #{id}
+    </update>
+
+    <select id="getShopByName" resultMap="ShopMap">
+                select * from shop where name like concat('%',#{name},'%');
+    </select>
     <!--根据id查询商家信息-->
     <select id="findShopById" resultMap="ShopMap">
         select * from shop where id = #{id}

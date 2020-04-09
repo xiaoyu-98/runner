@@ -59,4 +59,12 @@ public interface UserService {
     User findCurrentUser(Authentication authentication);
 
     List<User> getAllUsers();
+
+    List<User> getUserByName(String name);
+
+    int updateUser(User user);
+
+    int deleteUser(Integer id);
+
+    int deleteMany(Integer[] ids);
 }
