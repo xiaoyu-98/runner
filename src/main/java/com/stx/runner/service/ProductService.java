@@ -58,7 +58,7 @@ public interface ProductService {
 
     int deleteByIds(Integer[] ids);
 
-    int updateProduct(Product product,Integer sid);
+    int updateProduct(Product product);
 
     List<Product> findBySnameAndPname(Integer sid, String pname);
 }

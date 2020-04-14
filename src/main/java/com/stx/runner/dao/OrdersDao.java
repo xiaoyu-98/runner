@@ -3,6 +3,8 @@ package com.stx.runner.dao;
 import com.stx.runner.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public interface OrdersDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Orders> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
@@ -65,4 +67,8 @@ public interface OrdersDao {
     int deleteById(Integer id);
 
     List<Orders> findAllByUid(Integer id);
+
+    List<Orders> findAllOrdersByPage();
+
+    List<Orders> getOrdersByUserAndShop(@Param("uid") Integer uid, @Param("sid") Integer sid);
 }

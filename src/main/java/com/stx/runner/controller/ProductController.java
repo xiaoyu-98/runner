@@ -69,9 +69,9 @@ public class ProductController {
     }
 
 
-    @PutMapping("/updateProduct/{sid}")
-    public RespBean updateProduct(@RequestBody Product product, @PathVariable Integer sid) {
-        if (productService.updateProduct(product, sid) == 1) {
+    @PutMapping("/updateProduct")
+    public RespBean updateProduct(@RequestBody Product product) {
+        if (productService.updateProduct(product) == 1) {
             return RespBean.ok("更新成功！");
         }
         return RespBean.error("更新失败！");

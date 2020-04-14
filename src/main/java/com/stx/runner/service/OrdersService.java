@@ -1,7 +1,10 @@
 package com.stx.runner.service;
 
+import com.github.pagehelper.PageInfo;
 import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.entity.Orders;
+import org.springframework.core.annotation.Order;
+
 import java.util.List;
 
 /**
@@ -56,4 +59,8 @@ public interface OrdersService {
     List<Orders> findAllByUid(Integer id);
 
     boolean createOrders(Orders orders, OrderProduct[] orderProduct);
+
+    List<Orders> findAllOrdersByPage();
+
+    PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid , Integer pageNum, Integer pageSize);
 }

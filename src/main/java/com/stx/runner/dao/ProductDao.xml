@@ -9,27 +9,37 @@
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="sellNum" column="sellNum" jdbcType="INTEGER"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
-        <association property="shop" column="sid"
-                     select="com.stx.runner.dao.ShopDao.findShopById"
-                     javaType="com.stx.runner.entity.Shop"
-        >
+        <association property="shop" javaType="com.stx.runner.entity.Shop">
+            <id property="id" column="sid" jdbcType="INTEGER"/>
+            <result property="name" column="name2" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime2" jdbcType="TIMESTAMP"/>
+            <result property="score" column="score" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="isApprove" column="isApprove" jdbcType="BOOLEAN"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="sellNum" column="sellNum2" jdbcType="INTEGER"/>
+            <result property="info" column="info" jdbcType="VARCHAR"/>
+            <result property="open" column="open" jdbcType="BOOLEAN"/>
+            <result property="image" column="image2" jdbcType="VARCHAR"/>
         </association>
     </resultMap>
 
     <select id="findBySnameAndPname" resultMap="ProductMap">
-        select p.*,s.name as sname from product p,shop s
+        select p.*,s.id as sid,s.name as name2,s.createTime as createTime2,
+         s.sellNum as sellNum2,s.image as image2,s.score,s.type,s.isApprove,s.phone,s.info,s.open
+         from product p,shop s
         where p.sid = s.id
         <if test="sid!=null and sid!=''">
             and p.sid = #{sid}
         </if>
         <if test="pname!=null and pname!=''">
-            and p.name = #{pname}
+            and p.name like concat('%',#{pname},'%')
         </if>
     </select>
 
 
     <update id="updateProduct">
-        update product set name = #{product.name}, price=#{product.price},sid=#{sid} where id = #{product.id}
+        update product set name = #{product.name}, price=#{product.price},sid=#{product.shop.id} where id = #{product.id}
     </update>
 
     <delete id="deleteByIds">
@@ -40,7 +50,9 @@
     </delete>
 
     <select id="findAllProducts" resultMap="ProductMap">
-        select p.*,s.name as sname from product p,shop s where p.sid = s.id order by s.id
+        select p.*,s.id as sid,s.name as name2,s.createTime as createTime2,
+         s.sellNum as sellNum2,s.image as image2,s.score,s.type,s.isApprove,s.phone,s.info,s.open
+          from product p,shop s where p.sid = s.id order by s.id
     </select>
 
     <!--根据商家id查询该商家的所有产品-->

@@ -39,7 +39,6 @@ public class Product implements Serializable {
     private Shop shop;
 
 
-
     public Integer getId() {
         return id;
     }

@@ -14,6 +14,60 @@
         <result property="sellerPhone" column="seller_phone" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="ordersWithuserAndShop" type="com.stx.runner.entity.Orders" extends="OrdersMap">
+        <association property="users" javaType="com.stx.runner.entity.User">
+            <id property="id" column="uid" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone1" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime1" jdbcType="TIMESTAMP"/>
+            <result property="enabled" column="enabled" jdbcType="BOOLEAN"/>
+            <result property="image1" column="image" jdbcType="VARCHAR"/>
+            <result property="nameZh" column="nameZh" jdbcType="VARCHAR"/>
+        </association>
+        <association property="shops" javaType="com.stx.runner.entity.Shop">
+            <id property="id" column="sid" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime2" jdbcType="TIMESTAMP"/>
+            <result property="score" column="score" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="isApprove" column="isApprove" jdbcType="BOOLEAN"/>
+            <result property="phone" column="phone2" jdbcType="VARCHAR"/>
+            <result property="sellNum" column="sellNum" jdbcType="INTEGER"/>
+            <result property="info" column="info" jdbcType="VARCHAR"/>
+            <result property="open" column="open" jdbcType="BOOLEAN"/>
+            <result property="image" column="image2" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <select id="getOrdersByUserAndShop" resultMap="ordersWithuserAndShop">
+        select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
+        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
+        u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
+        u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
+        from orders o, shop s,user u
+        where o.sid = s.id and o.uid = u.id
+        <if test="sid !=null and sid !=''">
+            and sid = #{sid}
+        </if>
+        <if test="uid !=null and uid !=''">
+            and uid = #{uid}
+        </if>
+    </select>
+
+
+    <select id="findAllOrdersByPage" resultMap="ordersWithuserAndShop">
+        select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
+        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
+        u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
+        u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
+        from orders o, shop s,user u
+        where o.sid = s.id and o.uid = u.id
+    </select>
+
     <select id="findAllByUid" resultMap="OrdersMap">
         select * from orders
     </select>
@@ -37,7 +91,8 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrdersMap">
         select
-          id, buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid
+        id, buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone,
+        uid, sid
         from school_shopping.orders
         <where>
             <if test="id != null">

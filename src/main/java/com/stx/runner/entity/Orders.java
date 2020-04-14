@@ -33,7 +33,7 @@ public class Orders implements Serializable {
      */
     private Double orderAmount;
     /**
-     * 订单状态1，已下单 0 已送达
+     * 订单状态1，已下单 0 已送达shossho
      */
     private Boolean orderStatus;
     /**
@@ -52,12 +52,11 @@ public class Orders implements Serializable {
     /**
      * 用户id
      */
-    private Integer uid;
+    private User users;
     /**
      * 商家id
      */
-    private Integer sid;
-
+    private Shop shops;
 
     public Integer getId() {
         return id;
@@ -131,19 +130,19 @@ public class Orders implements Serializable {
         this.sellerPhone = sellerPhone;
     }
 
-    public Integer getUid() {
-        return uid;
+    public User getUsers() {
+        return users;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUsers(User users) {
+        this.users = users;
     }
 
-    public Integer getSid() {
-        return sid;
+    public Shop getShops() {
+        return shops;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setShops(Shop shops) {
+        this.shops = shops;
     }
 }

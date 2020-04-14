@@ -1,5 +1,7 @@
 package com.stx.runner.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.stx.runner.dao.OrderProductDao;
 import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.entity.Orders;
@@ -9,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -117,5 +118,18 @@ public class OrdersServiceImpl implements OrdersService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Orders> findAllOrdersByPage() {
+        return ordersDao.findAllOrdersByPage();
+    }
+
+    @Override
+    public PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Orders> orders = ordersDao.getOrdersByUserAndShop(uid,sid);
+        PageInfo<Orders> pageInfo = new PageInfo<>(orders);
+        return pageInfo;
     }
 }

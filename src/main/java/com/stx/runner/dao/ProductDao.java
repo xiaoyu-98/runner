@@ -3,6 +3,8 @@ package com.stx.runner.dao;
 import com.stx.runner.entity.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  * @since 2020-03-07 15:16:12
  */
 
+@Repository
 public interface ProductDao {
 
     /**
@@ -70,7 +73,7 @@ public interface ProductDao {
 
     int deleteByIds(@Param("ids") Integer[] ids);
 
-    int updateProduct(@Param("product") Product product,@Param("sid") Integer sid);
+    int updateProduct(@Param("product") Product product);
 
     List<Product> findBySnameAndPname(@Param("sid") Integer sid, @Param("pname") String pname);
 }
