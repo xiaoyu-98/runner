@@ -32,13 +32,6 @@ public interface OrdersService {
      */
     List<Orders> queryAllByLimit(int offset, int limit);
 
-    /**
-     * 新增数据
-     *
-     * @param orders 实例对象
-     * @return 实例对象
-     */
-    Orders insert(Orders orders);
 
     /**
      * 修改数据

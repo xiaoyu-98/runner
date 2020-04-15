@@ -132,7 +132,7 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert">
         insert into school_shopping.orders(buyer_name, buyer_phone, buyer_address, order_amount, order_status, createTime, seller_name, seller_phone, uid, sid)
         values (#{buyerName}, #{buyerPhone}, #{buyerAddress}, #{orderAmount}, #{orderStatus}, #{createTime}, #{sellerName}, #{sellerPhone}, #{uid}, #{sid})
     </insert>

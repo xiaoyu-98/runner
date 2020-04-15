@@ -33,7 +33,7 @@ public class Orders implements Serializable {
      */
     private Double orderAmount;
     /**
-     * 订单状态1，已下单 0 已送达shossho
+     * 订单状态1，已下单 0 已送达
      */
     private Boolean orderStatus;
     /**
@@ -57,6 +57,52 @@ public class Orders implements Serializable {
      * 商家id
      */
     private Shop shops;
+    private Integer sid;
+    private Integer uid;
+
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", buyerName='" + buyerName + '\'' +
+                ", buyerPhone='" + buyerPhone + '\'' +
+                ", buyerAddress='" + buyerAddress + '\'' +
+                ", orderAmount=" + orderAmount +
+                ", orderStatus=" + orderStatus +
+                ", createTime=" + createTime +
+                ", sellerName='" + sellerName + '\'' +
+                ", sellerPhone='" + sellerPhone + '\'' +
+                ", users=" + users +
+                ", shops=" + shops +
+                ", sid=" + sid +
+                ", uid=" + uid +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -130,12 +176,12 @@ public class Orders implements Serializable {
         this.sellerPhone = sellerPhone;
     }
 
-    public User getUsers() {
+    public User getUser() {
         return users;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.users = user;
     }
 
     public Shop getShops() {

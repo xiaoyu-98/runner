@@ -50,17 +50,7 @@ public class OrdersServiceImpl implements OrdersService {
         return this.ordersDao.queryAllByLimit(offset, limit);
     }
 
-    /**
-     * 新增数据
-     *
-     * @param orders 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public Orders insert(Orders orders) {
-        this.ordersDao.insert(orders);
-        return orders;
-    }
+
 
     /**
      * 修改数据
@@ -99,6 +89,8 @@ public class OrdersServiceImpl implements OrdersService {
     @Transactional
     @Override
     public boolean createOrders(Orders orders, OrderProduct[] orderProduct) {
+
+        System.out.println(orders.toString());
         //设置时间
         orders.setCreateTime(new Date());
         //新增订单
