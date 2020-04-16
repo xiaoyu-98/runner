@@ -65,7 +65,7 @@ public class ShopController {
 
     @ApiOperation("根据商家id查询该商家信息")
     @GetMapping("/findShopById/{id}")
-    public Shop findShopById(Integer id) {
+    public Shop findShopById(@PathVariable Integer id) {
         return shopService.findShopById(id);
     }
 

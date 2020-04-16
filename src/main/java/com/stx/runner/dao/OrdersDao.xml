@@ -60,12 +60,21 @@
 
 
     <select id="findAllOrdersByPage" resultMap="ordersWithuserAndShop">
-        select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
+   /*     select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
         s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
         u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
         u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
         from orders o, shop s,user u
-        where o.sid = s.id and o.uid = u.id
+        where o.sid = s.id and o.uid = u.id*/
+        select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
+        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
+        u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
+        u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
+        from orders o left join shop s
+        on o.sid = s.id left join user u
+        on o.uid = u.id
+
+
     </select>
 
     <select id="findAllByUid" resultMap="OrdersMap">
