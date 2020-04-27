@@ -1,11 +1,13 @@
 package com.stx.runner.service.impl;
 
+import com.stx.runner.dao.OrdersDao;
 import com.stx.runner.entity.Product;
 import com.stx.runner.entity.Shop;
 import com.stx.runner.dao.ShopDao;
 import com.stx.runner.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
 public class ShopServiceImpl implements ShopService {
     @Autowired
     ShopDao shopDao;
+    @Autowired
+    OrdersDao ordersDao;
 
     /**
      * 通过ID查询单条数据
@@ -107,8 +111,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Transactional
     public int updateShop(Shop shop) {
-        return shopDao.updateShop(shop);
+        int sum = 0;
+        sum += shopDao.updateShop(shop);
+        sum += ordersDao.updateByShop(shop);
+        return sum;
     }
 
     @Override

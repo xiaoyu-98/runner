@@ -41,7 +41,6 @@ public class ProductController {
         return this.productService.queryById(id);
     }
 
-
     @GetMapping("/findAllProductsByPage")
     public PageInfo<Product> findAllProducts(@RequestParam(defaultValue = "1") Integer pageNum,
                                              @RequestParam(defaultValue = "8") Integer pageSize) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Orders)实体类
@@ -33,7 +34,7 @@ public class Orders implements Serializable {
      */
     private Double orderAmount;
     /**
-     * 订单状态1，已下单 0 已送达
+     * 订单状态1.已下单 2.已接单 3.已送达
      */
     private Boolean orderStatus;
     /**
@@ -60,6 +61,15 @@ public class Orders implements Serializable {
     private Integer sid;
     private Integer uid;
 
+    private List<OrderProduct> orderProducts;
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
 
     public User getUsers() {
         return users;

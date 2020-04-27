@@ -1,6 +1,8 @@
 package com.stx.runner.dao;
 
 import com.stx.runner.entity.Orders;
+import com.stx.runner.entity.Shop;
+import com.stx.runner.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,4 +73,10 @@ public interface OrdersDao {
     List<Orders> findAllOrdersByPage();
 
     List<Orders> getOrdersByUserAndShop(@Param("uid") Integer uid, @Param("sid") Integer sid);
+
+    int updateByUser(User user);
+
+    int updateByShop(Shop shop);
+
+    List<Orders> findOrdersByStatus(Integer status);
 }

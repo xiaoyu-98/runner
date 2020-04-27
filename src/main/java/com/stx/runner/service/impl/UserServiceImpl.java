@@ -1,5 +1,6 @@
 package com.stx.runner.service.impl;
 
+import com.stx.runner.dao.OrdersDao;
 import com.stx.runner.entity.User;
 import com.stx.runner.dao.UserDao;
 import com.stx.runner.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -25,7 +27,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
-     UserDao userDao;
+    UserDao userDao;
+    @Autowired
+    OrdersDao ordersDao;
 
     /**
      * 通过ID查询单条数据
@@ -98,6 +102,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     /**
      * 获取当前登录用户消息
+     *
      * @return
      */
     @Override
@@ -117,8 +122,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public int updateUser(User user) {
-        return userDao.updateUser(user);
+        int sum = 0;
+        sum += userDao.updateUser(user);
+        sum += ordersDao.updateByUser(user);
+        return sum;
     }
 
     @Override

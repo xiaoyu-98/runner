@@ -66,6 +66,7 @@ public class UserController {
         PageInfo<User> pageInfo = new PageInfo<>(users);
         return pageInfo;
     }
+
     @ApiOperation("获取所有用户信息")
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
@@ -80,7 +81,7 @@ public class UserController {
 
     @PutMapping("/updateUser")
     public RespBean updateUser(@RequestBody User user) {
-        if (userService.updateUser(user) == 1) {
+        if (userService.updateUser(user) >= 1) {
             return RespBean.ok("更新成功");
         }
         return RespBean.error("更新失败！");

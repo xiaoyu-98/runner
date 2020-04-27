@@ -124,4 +124,9 @@ public class OrdersServiceImpl implements OrdersService {
         PageInfo<Orders> pageInfo = new PageInfo<>(orders);
         return pageInfo;
     }
+
+    @Override
+    public List<Orders> findOrdersByStatus(Integer status) {
+        return ordersDao.findOrdersByStatus(status);
+    }
 }

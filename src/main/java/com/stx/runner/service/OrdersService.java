@@ -56,4 +56,6 @@ public interface OrdersService {
     List<Orders> findAllOrdersByPage();
 
     PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid , Integer pageNum, Integer pageSize);
+
+    List<Orders> findOrdersByStatus(Integer status);
 }

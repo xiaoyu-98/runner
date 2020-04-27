@@ -43,9 +43,31 @@
         </association>
     </resultMap>
 
+    <resultMap id="OrdersWithProducts" type="com.stx.runner.entity.Orders" extends="OrdersMap">
+        <collection property="orderProducts" ofType="com.stx.runner.entity.OrderProduct">
+            <id property="id" column="opid"/>
+            <result property="pnum" column="pnum"/>
+            <result property="oid" column="oid"/>
+            <association property="product" javaType="com.stx.runner.entity.Product">
+                <id property="id" column="pid2"/>
+                <result property="name" column="name"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <!--根据订单状态查询所有订单-->
+    <select id="findOrdersByStatus" resultMap="OrdersWithProducts">
+
+          select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
+        from orders o,order_product op ,product p
+        where o.id  = op.oid and op.pid = p.id and o.order_status = #{status}
+    </select>
+
+
     <select id="getOrdersByUserAndShop" resultMap="ordersWithuserAndShop">
         select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
-        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
+        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as
+        image2,
         u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
         u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
         from orders o, shop s,user u
@@ -57,15 +79,22 @@
             and uid = #{uid}
         </if>
     </select>
+    <!--根据商家更新订单信息-->
+    <update id="updateByShop">
+        update orders
+        set seller_name = #{name},seller_phone = #{phone}
+        where sid = #{id}
+    </update>
+
+    <!--根据用户更新订单信息-->
+    <update id="updateByUser">
+        update orders
+        set buyer_name = #{username} , buyer_address=#{address},buyer_phone =#{phone}
+        where uid = #{id}
+    </update>
 
 
     <select id="findAllOrdersByPage" resultMap="ordersWithuserAndShop">
-   /*     select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
-        s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
-        u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
-        u.createTime as createTime1,u.enabled as enabled,u.image as image1,u.nameZh as nameZh
-        from orders o, shop s,user u
-        where o.sid = s.id and o.uid = u.id*/
         select o.*,s.id as sid,s.name as name ,s.createTime as createTime2,s.score as score,s.type as type,
         s.isApprove as isApprove,s.phone as phone2,s.sellNum as sellNum,s.info as info,s.open as open, s.image as image2,
         u.id as uid,u.username as username,u.phone as phone1,u.sex as sex,u.email as email,u.address as address,
@@ -73,12 +102,16 @@
         from orders o left join shop s
         on o.sid = s.id left join user u
         on o.uid = u.id
-
-
     </select>
 
-    <select id="findAllByUid" resultMap="OrdersMap">
-        select * from orders
+    <!--查询当前用户的订单-->
+    <!--    <select id="findAllByUid" resultMap="OrdersMap">
+            select * from orders where uid = #{id} order by id desc
+        </select>-->
+    <select id="findAllByUid" resultMap="OrdersWithProducts">
+        select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
+        from orders o,order_product op ,product p
+        where o.id  = op.oid and op.pid = p.id and o.uid = #{id}
     </select>
 
     <!--查询单个-->

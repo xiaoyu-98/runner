@@ -18,6 +18,7 @@ import java.util.List;
  *
  * @author makejava
  * @since 2020-03-07 15:16:12
+ *
  */
 @RestController
 @RequestMapping("shop")
@@ -38,7 +39,7 @@ public class ShopController {
         return shops;
     }
 
-    @ApiOperation("查询所有商家信息")
+    @ApiOperation("查询所有商家信息分页")
     @GetMapping("/findAllByPage")
     public PageInfo<Shop> findAllByPage(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "8") Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -76,7 +77,7 @@ public class ShopController {
 
     @PutMapping("/updateShop")
     public RespBean updateShop(@RequestBody Shop shop) {
-        if (shopService.updateShop(shop) == 1) {
+        if (shopService.updateShop(shop) >= 1) {
             return RespBean.ok("更新成功！");
         }
         return RespBean.error("更新失败！");

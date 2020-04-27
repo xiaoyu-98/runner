@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.stx.runner.entity.*;
 import com.stx.runner.service.OrdersService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,17 +26,15 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-   /* @GetMapping("selectOne")
-    public Orders selectOne(Integer id) {
-        return this.ordersService.queryById(id);
+
+    @ApiOperation("根据订单状态查询该状态下所有订单（1.已下单 2.已接单 3.已送达）")
+    @GetMapping("/findOrdersByStatus/{status}")
+    public List<Orders> findOrdersByStatus(@PathVariable Integer status) {
+        List<Orders> orders = ordersService.findOrdersByStatus(status);
+        return orders;
     }
-*/
+
+
     @ApiOperation("根据用户id查询用户的所有订单")
     @GetMapping("/findOrdersByUid/{id}")
     public List<Orders> findAllByUid(@PathVariable Integer id) {
@@ -64,6 +63,7 @@ public class OrdersController {
         PageInfo<Orders> ordersPageInfo = new PageInfo<>(orders);
         return ordersPageInfo;
     }
+
 
     @GetMapping("/getOrdersByUserAndShop")
     public PageInfo<Orders> getOrdersByUserAndShop(@RequestParam(defaultValue = "1")Integer pageNum,
