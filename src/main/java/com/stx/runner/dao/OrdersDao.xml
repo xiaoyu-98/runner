@@ -55,6 +55,12 @@
         </collection>
     </resultMap>
 
+    <!--修改订单状态-->
+  <update id="updateOrdersStatus" >
+      update orders set order_status = #{status} where id = #{id}
+  </update>
+
+
     <!--根据订单状态查询所有订单-->
     <select id="findOrdersByStatus" resultMap="OrdersWithProducts">
 

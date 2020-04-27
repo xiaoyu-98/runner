@@ -129,4 +129,11 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Orders> findOrdersByStatus(Integer status) {
         return ordersDao.findOrdersByStatus(status);
     }
+
+    @Override
+    public int updateOrdersStatus(Integer status, Integer id) {
+        int i = ordersDao.updateOrdersStatus(status, id);
+        System.out.println(i);
+        return i;
+    }
 }

@@ -58,4 +58,6 @@ public interface OrdersService {
     PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid , Integer pageNum, Integer pageSize);
 
     List<Orders> findOrdersByStatus(Integer status);
+
+    int updateOrdersStatus(Integer status, Integer id);
 }

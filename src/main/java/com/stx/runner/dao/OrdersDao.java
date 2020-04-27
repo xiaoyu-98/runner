@@ -79,4 +79,6 @@ public interface OrdersDao {
     int updateByShop(Shop shop);
 
     List<Orders> findOrdersByStatus(Integer status);
+
+    int updateOrdersStatus(@Param("status") Integer status, @Param("id") Integer id);
 }

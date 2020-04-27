@@ -2,6 +2,7 @@ package com.stx.runner.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.stx.runner.dao.OrdersDao;
 import com.stx.runner.entity.*;
 import com.stx.runner.service.OrdersService;
 import io.swagger.annotations.Api;
@@ -25,6 +26,17 @@ public class OrdersController {
      */
     @Autowired
     private OrdersService ordersService;
+
+
+    @ApiOperation("更新订单的状态")
+    @PutMapping("/updateOrdersStatus/{id}/{status}")
+    public RespBean updateOrdersStatus(@PathVariable Integer status,@PathVariable Integer id) {
+        if (ordersService.updateOrdersStatus(status,id) == 1) {
+            return  RespBean.ok("更新成功！");
+        }
+        return RespBean.error("更新失败");
+
+    }
 
 
     @ApiOperation("根据订单状态查询该状态下所有订单（1.已下单 2.已接单 3.已送达）")
@@ -66,10 +78,10 @@ public class OrdersController {
 
 
     @GetMapping("/getOrdersByUserAndShop")
-    public PageInfo<Orders> getOrdersByUserAndShop(@RequestParam(defaultValue = "1")Integer pageNum,
-                                                   @RequestParam(defaultValue = "8")  Integer pageSize
+    public PageInfo<Orders> getOrdersByUserAndShop(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                   @RequestParam(defaultValue = "8") Integer pageSize
             , Integer uid, Integer sid) {
-        return ordersService.getOrdersByUserAndShop(uid,sid,pageNum,pageSize);
+        return ordersService.getOrdersByUserAndShop(uid, sid, pageNum, pageSize);
     }
 
 }
