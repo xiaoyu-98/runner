@@ -2,10 +2,8 @@ package com.stx.runner.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.stx.runner.dao.OrdersDao;
 import com.stx.runner.entity.*;
 import com.stx.runner.service.OrdersService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -76,12 +74,10 @@ public class OrdersController {
         return ordersPageInfo;
     }
 
-
     @GetMapping("/getOrdersByUserAndShop")
     public PageInfo<Orders> getOrdersByUserAndShop(@RequestParam(defaultValue = "1") Integer pageNum,
                                                    @RequestParam(defaultValue = "8") Integer pageSize
             , Integer uid, Integer sid) {
         return ordersService.getOrdersByUserAndShop(uid, sid, pageNum, pageSize);
     }
-
 }
