@@ -145,4 +145,9 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Orders> findRunnerOrdersByRid(Integer rid) {
         return ordersDao.findRunnerOrdersByRid(rid);
     }
+
+    @Override
+    public List<Orders> findAllOrdersWithCan() {
+        return ordersDao.findAllOrdersWithCan();
+    }
 }

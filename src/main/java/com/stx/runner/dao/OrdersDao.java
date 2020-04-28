@@ -85,4 +85,7 @@ public interface OrdersDao {
     List<Orders> findRunnerOrdersByStatus(@Param("status") Integer status,@Param("rid") Integer rid);
 
     List<Orders> findRunnerOrdersByRid(Integer rid);
+
+    List<Orders> findAllOrdersWithCan();
+
 }

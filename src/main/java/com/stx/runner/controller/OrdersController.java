@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.stx.runner.entity.*;
 import com.stx.runner.service.OrdersService;
 import com.stx.runner.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,7 +30,7 @@ public class OrdersController {
     @Autowired
     UserService userService;
 
-    @ApiOperation("查询当前跑手的所有订单")
+    @ApiOperation("查询当前跑手已接和已送达的所有订单（不用）")
     @GetMapping("/findOrdersByRid")
     public List<Orders> findOrdersByRid(Authentication authentication) {
         User user = userService.findCurrentUser(authentication);
@@ -39,7 +40,7 @@ public class OrdersController {
 
 
     @ApiOperation("更新订单的状态和更新订单的外键rid")
-    @PutMapping("/updateOrdersStatus/{id}/{status}")
+    @PostMapping("/updateOrdersStatus/{id}/{status}")
     public RespBean updateOrdersStatus(@PathVariable Integer status, @PathVariable Integer id, Authentication authentication) {
         //跑手接单添加信息
         User user = userService.findCurrentUser(authentication);
@@ -52,7 +53,7 @@ public class OrdersController {
 
     }
 
-    @ApiOperation("根据订单状态查询该状态下所有订单(这是跑手的订单)（1.已下单 2.已接单 3.已送达）")
+    @ApiOperation("根据订单状态查询该状态下所有订单(这是跑手的订单)（2.已接单 3.已送达）")
     @GetMapping("/findRunnerOrdersByStatus/{status}")
     public List<Orders> findRunnerOrdersByStatus(@PathVariable Integer status, Authentication authentication) {
         //拿到当前登录的跑手id
@@ -62,7 +63,14 @@ public class OrdersController {
         return orders;
     }
 
-    @ApiOperation("根据订单状态查询该状态下所有订单(这是用户的订单)（1.已下单 2.已接单 3.已送达）")
+    @ApiOperation("查询所有可以接单的订单")
+    @GetMapping("/findAllOrdersWithCan")
+    public List<Orders> findAllOrdersWithCan() {
+        return ordersService.findAllOrdersWithCan();
+    }
+
+
+   /* @ApiOperation("根据订单状态查询该状态下所有订单(这是用户的订单)（1.已下单 2.已接单 3.已送达）")
     @GetMapping("/findOrdersByStatus/{status}")
     public List<Orders> findOrdersByStatus(@PathVariable Integer status, Authentication authentication) {
         //拿到当前登录的用户id
@@ -70,7 +78,7 @@ public class OrdersController {
         int uid = user.getId();
         List<Orders> orders = ordersService.findOrdersByStatus(status, uid);
         return orders;
-    }
+    }*/
 
 
     @ApiOperation("查询当前用户的所有订单（含产品）")

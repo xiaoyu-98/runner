@@ -65,4 +65,6 @@ public interface OrdersService {
     List<Orders> findRunnerOrdersByStatus(Integer status,Integer rid);
 
     List<Orders>  findRunnerOrdersByRid(Integer rid);
+
+    List<Orders> findAllOrdersWithCan();
 }
