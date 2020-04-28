@@ -55,18 +55,23 @@
         </collection>
     </resultMap>
 
-    <!--修改订单状态-->
+    <!--修改订单状态和跑手接单-->
   <update id="updateOrdersStatus" >
-      update orders set order_status = #{status} where id = #{id}
+      update orders set order_status = #{status}, rid = #{rid} where id = #{id}
   </update>
 
+    <select id="findRunnerOrdersByStatus" resultMap="OrdersWithProducts">
+         select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
+        from orders o,order_product op ,product p
+        where o.id  = op.oid and op.pid = p.id and o.order_status = #{status} and o.rid = #{rid}
+    </select>
 
     <!--根据订单状态查询所有订单-->
     <select id="findOrdersByStatus" resultMap="OrdersWithProducts">
 
           select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
         from orders o,order_product op ,product p
-        where o.id  = op.oid and op.pid = p.id and o.order_status = #{status}
+        where o.id  = op.oid and op.pid = p.id and o.order_status = #{status} and o.uid = #{uid}
     </select>
 
 
@@ -118,6 +123,12 @@
         select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
         from orders o,order_product op ,product p
         where o.id  = op.oid and op.pid = p.id and o.uid = #{id}
+    </select>
+
+    <select id="findRunnerOrdersByRid" resultMap="OrdersWithProducts">
+        select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
+        from orders o,order_product op ,product p
+        where o.id  = op.oid and op.pid = p.id and o.rid = #{rid}
     </select>
 
     <!--查询单个-->

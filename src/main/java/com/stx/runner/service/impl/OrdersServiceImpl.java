@@ -24,6 +24,7 @@ import java.util.List;
 public class OrdersServiceImpl implements OrdersService {
     @Autowired
     OrdersDao ordersDao;
+
     @Autowired
     OrderProductDao orderProductDao;
 
@@ -126,14 +127,22 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Orders> findOrdersByStatus(Integer status) {
-        return ordersDao.findOrdersByStatus(status);
+    public List<Orders> findOrdersByStatus(Integer status,Integer uid) {
+        return ordersDao.findOrdersByStatus(status,uid);
     }
 
     @Override
-    public int updateOrdersStatus(Integer status, Integer id) {
-        int i = ordersDao.updateOrdersStatus(status, id);
-        System.out.println(i);
-        return i;
+    public int updateOrdersStatus(Integer status, Integer id,Integer rid) {
+        return ordersDao.updateOrdersStatus(status, id,rid);
+    }
+
+    @Override
+    public List<Orders> findRunnerOrdersByStatus(Integer status,Integer rid) {
+        return ordersDao.findRunnerOrdersByStatus(status,rid);
+    }
+
+    @Override
+    public List<Orders> findRunnerOrdersByRid(Integer rid) {
+        return ordersDao.findRunnerOrdersByRid(rid);
     }
 }

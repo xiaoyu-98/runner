@@ -3,6 +3,7 @@ package com.stx.runner.service;
 import com.github.pagehelper.PageInfo;
 import com.stx.runner.entity.OrderProduct;
 import com.stx.runner.entity.Orders;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.core.annotation.Order;
 
 import java.util.List;
@@ -57,7 +58,11 @@ public interface OrdersService {
 
     PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid , Integer pageNum, Integer pageSize);
 
-    List<Orders> findOrdersByStatus(Integer status);
+    List<Orders> findOrdersByStatus(Integer status,Integer uid);
 
-    int updateOrdersStatus(Integer status, Integer id);
+    int updateOrdersStatus(Integer status, Integer id,Integer rid);
+
+    List<Orders> findRunnerOrdersByStatus(Integer status,Integer rid);
+
+    List<Orders>  findRunnerOrdersByRid(Integer rid);
 }
