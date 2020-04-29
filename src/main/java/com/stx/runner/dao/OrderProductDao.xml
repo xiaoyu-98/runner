@@ -3,7 +3,7 @@
 <mapper namespace="com.stx.runner.dao.OrderProductDao">
 
     <resultMap type="com.stx.runner.entity.OrderProduct" id="OrderProductMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="pid" column="pid" jdbcType="INTEGER"/>
         <result property="oid" column="oid" jdbcType="INTEGER"/>
         <result property="pnum" column="pnum" jdbcType="INTEGER"/>

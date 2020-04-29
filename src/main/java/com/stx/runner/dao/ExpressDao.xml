@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stx.runner.dao.ExpressDao">
+
+    <resultMap type="com.stx.runner.entity.Express" id="ExpressMap">
+        <id property="id" column="id"/>
+        <result property="type" column="type" />
+        <result property="number" column="number"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="raddress" column="raddress"/>
+        <result property="paddress" column="paddress"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="rprice" column="rprice"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+    <insert id="insertExpress">
+        insert  into express(type,number ,name ,phone,raddress,paddress,order_status
+        ,rprice,uid,create_time
+        )
+        values (#{express.type},#{express.number},#{express.name},#{express.phone},#{express.raddress},
+        #{express.paddress},#{express.orderStatus},#{express.rprice},#{id},#{express.createTime})
+    </insert>
+    <select id="getAllExpress" resultMap="ExpressMap"  >
+        select * from express where uid = #{id} order by id
+    </select>
+</mapper>

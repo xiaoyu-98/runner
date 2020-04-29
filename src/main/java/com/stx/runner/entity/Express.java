@@ -13,26 +13,30 @@ import java.util.Date;
  */
 public class Express {
 
-    public Integer id;
-    public String type; //快递类型
-    public Integer number;
-    public String phone;
-    public String raddress;
-    public String paddress;
-    public User user;
-    public User runner;
-    public Integer orderStatus;
+    private Integer id;
+    private String type; //快递类型
+    private Integer number;
+    private String phone;
+    private String raddress;
+    private String paddress;
+    private Integer orderStatus;
+    private String name;
+    //跑单价
+    private Integer rprice;
+
+
+    private User user;
+    private User runner;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Shanghai")
     public Date createTime;
 
-
-    public Date getCreateTime() {
-        return createTime;
+    public String getName() {
+        return name;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getId() {
@@ -83,6 +87,22 @@ public class Express {
         this.paddress = paddress;
     }
 
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Integer getRprice() {
+        return rprice;
+    }
+
+    public void setRprice(Integer rprice) {
+        this.rprice = rprice;
+    }
+
     public User getUser() {
         return user;
     }
@@ -99,11 +119,11 @@ public class Express {
         this.runner = runner;
     }
 
-    public Integer getOrderStatus() {
-        return orderStatus;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
