@@ -70,17 +70,6 @@ public class OrdersController {
     }
 
 
-   /* @ApiOperation("根据订单状态查询该状态下所有订单(这是用户的订单)（1.已下单 2.已接单 3.已送达）")
-    @GetMapping("/findOrdersByStatus/{status}")
-    public List<Orders> findOrdersByStatus(@PathVariable Integer status, Authentication authentication) {
-        //拿到当前登录的用户id
-        User user = userService.findCurrentUser(authentication);
-        int uid = user.getId();
-        List<Orders> orders = ordersService.findOrdersByStatus(status, uid);
-        return orders;
-    }*/
-
-
     @ApiOperation("查询当前用户的所有订单（含产品）")
     @GetMapping("/findOrdersByUid/{id}")
     public List<Orders> findAllByUid(@PathVariable Integer id) {

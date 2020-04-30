@@ -8,10 +8,11 @@
         <result property="buyerPhone" column="buyer_phone" jdbcType="VARCHAR"/>
         <result property="buyerAddress" column="buyer_address" jdbcType="VARCHAR"/>
         <result property="orderAmount" column="order_amount" jdbcType="NUMERIC"/>
-        <result property="orderStatus" column="order_status" jdbcType="BOOLEAN"/>
+        <result property="orderStatus" column="order_status" jdbcType="TINYINT"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="sellerName" column="seller_name" jdbcType="VARCHAR"/>
         <result property="sellerPhone" column="seller_phone" jdbcType="VARCHAR"/>
+        <result property="rprice" column="rprice" jdbcType="INTEGER" />
     </resultMap>
 
     <resultMap id="ordersWithuserAndShop" type="com.stx.runner.entity.Orders" extends="OrdersMap">
@@ -56,8 +57,9 @@
     </resultMap>
 
 
+    <!--查询所有可接单的订单-->
     <select id="findAllOrdersWithCan" resultMap="OrdersWithProducts">
-             select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
+        select o.*,op.id as opid,op.pnum as pnum,op.oid as oid ,p.id as pid2,p.name as `name`
         from orders o,order_product op ,product p
         where o.id  = op.oid and op.pid = p.id and o.order_status = 1
         order by o.id desc

@@ -36,7 +36,7 @@ public class Orders implements Serializable {
     /**
      * 订单状态1.已下单 2.已接单 3.已送达
      */
-    private Boolean orderStatus;
+    private Integer orderStatus;
     /**
      * 订单创建时间
      */
@@ -54,6 +54,9 @@ public class Orders implements Serializable {
      * 用户id
      */
     private User users;
+
+    private Integer rprice;
+
     /**
      * 商家id
      */
@@ -95,23 +98,12 @@ public class Orders implements Serializable {
         this.uid = uid;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", buyerName='" + buyerName + '\'' +
-                ", buyerPhone='" + buyerPhone + '\'' +
-                ", buyerAddress='" + buyerAddress + '\'' +
-                ", orderAmount=" + orderAmount +
-                ", orderStatus=" + orderStatus +
-                ", createTime=" + createTime +
-                ", sellerName='" + sellerName + '\'' +
-                ", sellerPhone='" + sellerPhone + '\'' +
-                ", users=" + users +
-                ", shops=" + shops +
-                ", sid=" + sid +
-                ", uid=" + uid +
-                '}';
+    public Integer getRprice() {
+        return rprice;
+    }
+
+    public void setRprice(Integer rprice) {
+        this.rprice = rprice;
     }
 
     public Integer getId() {
@@ -154,11 +146,11 @@ public class Orders implements Serializable {
         this.orderAmount = orderAmount;
     }
 
-    public Boolean getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Boolean orderStatus) {
+    public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 

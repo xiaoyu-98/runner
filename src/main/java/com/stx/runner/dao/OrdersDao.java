@@ -5,6 +5,7 @@ import com.stx.runner.entity.Shop;
 import com.stx.runner.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-07 15:16:12
  */
-
+@Repository
 public interface OrdersDao {
 
     /**
