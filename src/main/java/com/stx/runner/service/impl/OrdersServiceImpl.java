@@ -52,7 +52,6 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
 
-
     /**
      * 修改数据
      *
@@ -83,6 +82,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     /**
      * 生成订单业务层
+     *
      * @param orders
      * @param orderProduct
      * @return
@@ -120,25 +120,25 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public PageInfo<Orders> getOrdersByUserAndShop(Integer uid, Integer sid, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<Orders> orders = ordersDao.getOrdersByUserAndShop(uid,sid);
+        PageHelper.startPage(pageNum, pageSize);
+        List<Orders> orders = ordersDao.getOrdersByUserAndShop(uid, sid);
         PageInfo<Orders> pageInfo = new PageInfo<>(orders);
         return pageInfo;
     }
 
     @Override
-    public List<Orders> findOrdersByStatus(Integer status,Integer uid) {
-        return ordersDao.findOrdersByStatus(status,uid);
+    public List<Orders> findOrdersByStatus(Integer status, Integer uid) {
+        return ordersDao.findOrdersByStatus(status, uid);
     }
 
     @Override
-    public int updateOrdersStatus(Integer status, Integer id,Integer rid) {
-        return ordersDao.updateOrdersStatus(status, id,rid);
+    public int updateOrdersStatus(Integer status, Integer id, Integer rid) {
+        return ordersDao.updateOrdersStatus(status, id, rid);
     }
 
     @Override
-    public List<Orders> findRunnerOrdersByStatus(Integer status,Integer rid) {
-        return ordersDao.findRunnerOrdersByStatus(status,rid);
+    public List<Orders> findRunnerOrdersByStatus(Integer status, Integer rid) {
+        return ordersDao.findRunnerOrdersByStatus(status, rid);
     }
 
     @Override
@@ -149,5 +149,20 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> findAllOrdersWithCan() {
         return ordersDao.findAllOrdersWithCan();
+    }
+
+    @Override
+    @Transactional
+    public int deleteOrdersByOid(Integer id) {
+        return orderProductDao.deleteByOid(id) +
+                ordersDao.deleteOrdersByOid(id);
+    }
+
+    @Override
+    @Transactional
+    public int deleteMany(Integer[] ids) {
+        return orderProductDao.deleteByOids(ids)
+                + ordersDao.deleteMany(ids)
+                ;
     }
 }

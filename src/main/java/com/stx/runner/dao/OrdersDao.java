@@ -89,4 +89,7 @@ public interface OrdersDao {
 
     List<Orders> findAllOrdersWithCan();
 
+    int deleteOrdersByOid(Integer id);
+
+    int deleteMany(@Param("ids") Integer[] ids);
 }

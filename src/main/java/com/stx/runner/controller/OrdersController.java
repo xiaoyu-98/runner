@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.stx.runner.entity.*;
 import com.stx.runner.service.OrdersService;
 import com.stx.runner.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,6 +29,26 @@ public class OrdersController {
     @Autowired
     UserService userService;
 
+
+    @ApiOperation("根据多个id删除订单")
+    @DeleteMapping("/deleteMany")
+    public RespBean deleteMany(Integer[] ids) {
+        if (ordersService.deleteMany(ids) > ids.length) {
+            return RespBean.ok("删除成功！");
+        }
+        return RespBean.error("删除失败！");
+
+    }
+
+    @ApiOperation("根据订单id删除改订单和该订单下的产品信息")
+    @DeleteMapping("/deleteOrdersByOid/{id}")
+    public RespBean deleteOrdersByOid(@PathVariable Integer id) {
+        if (ordersService.deleteOrdersByOid(id) > 1) {
+            return RespBean.ok("删除成功！");
+        }
+        return RespBean.error("删除失败！");
+    }
+
     @ApiOperation("查询当前跑手已接和已送达的所有订单（不用）")
     @GetMapping("/findOrdersByRid")
     public List<Orders> findOrdersByRid(Authentication authentication) {
@@ -45,7 +64,6 @@ public class OrdersController {
         //跑手接单添加信息
         User user = userService.findCurrentUser(authentication);
         int rid = user.getId();
-//        System.out.println(rid);
         if (ordersService.updateOrdersStatus(status, id, rid) == 1) {
             return RespBean.ok("更新成功！");
         }

@@ -12,7 +12,7 @@
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="sellerName" column="seller_name" jdbcType="VARCHAR"/>
         <result property="sellerPhone" column="seller_phone" jdbcType="VARCHAR"/>
-        <result property="rprice" column="rprice" jdbcType="INTEGER" />
+        <result property="rprice" column="rprice" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="ordersWithuserAndShop" type="com.stx.runner.entity.Orders" extends="OrdersMap">
@@ -55,6 +55,17 @@
             </association>
         </collection>
     </resultMap>
+
+    <delete id="deleteMany">
+        delete from orders where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteOrdersByOid">
+        delete from orders where id = #{id}
+    </delete>
 
 
     <!--查询所有可接单的订单-->

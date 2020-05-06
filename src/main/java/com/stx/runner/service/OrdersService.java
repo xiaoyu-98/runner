@@ -67,4 +67,9 @@ public interface OrdersService {
     List<Orders>  findRunnerOrdersByRid(Integer rid);
 
     List<Orders> findAllOrdersWithCan();
+
+    int deleteOrdersByOid(Integer id);
+
+    int deleteMany(Integer[] ids);
+
 }

@@ -13,9 +13,16 @@
         insert into order_product(pid,pnum,oid) values (#{pid},#{pnum},#{oid})
     </insert>
 
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from school_shopping.order_product where id = #{id}
+    <!--通过订单id删除订单产品-->
+    <delete id="deleteByOid">
+        delete from school_shopping.order_product where oid = #{id}
+    </delete>
+
+    <delete id="deleteByOids">
+        delete from order_product where oid in
+        <foreach collection="ids" item="oid" close=")" open="(" separator=",">
+            #{oid}
+        </foreach>
     </delete>
 
 </mapper>

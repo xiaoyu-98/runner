@@ -62,6 +62,7 @@ public interface OrderProductDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteByOid(Integer id);
 
+    int deleteByOids(@Param("ids") Integer[] ids);
 }

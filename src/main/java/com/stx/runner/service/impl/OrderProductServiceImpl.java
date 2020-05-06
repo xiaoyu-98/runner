@@ -74,6 +74,6 @@ public class OrderProductServiceImpl implements OrderProductService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.orderProductDao.deleteById(id) > 0;
+        return  false;
     }
 }
